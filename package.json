@@ -2,9 +2,8 @@
   "name": "react-scaffold",
   "version": "1.0.0",
   "description": "A project to show bare bone of a react project based webpack",
-  "main": "index.js",
   "scripts": {
-    "develop": "NODE_ENV=development webpack serve",
+    "dev": "NODE_ENV=development webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,6 +13,8 @@
   "author": "chengsw",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -35,6 +36,8 @@
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.8.0",
     "postcss-loader": "^8.1.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
     "webpack": "^5.90.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"

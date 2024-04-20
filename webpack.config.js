@@ -23,6 +23,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: {
+      "@assets": path.resolve(__dirname, 'assets')
+    }
   },
   plugins: [
     new ESLintPlugin({
@@ -33,7 +36,7 @@ module.exports = {
         chunkFilename: '[id].css'
     }),
     new webpack.HotModuleReplacementPlugin({
-    // Options...
+      // Options...
     }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
@@ -55,6 +58,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
       {
         test: /\.tsx?$/,
         use: [{

@@ -6,4 +6,4 @@ import './index.css';
 const domNode = document.getElementById('app');
 const root = createRoot(domNode);
 
-root.render(<App text='dwad' obj={{ n: 3333 }} />);
+root.render(<App text='dwad' obj={{ n: 2233 }} />);

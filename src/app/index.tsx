@@ -19,8 +19,8 @@ export default ({ obj }: TestProps) => {
   // }, [obj]);
 
   // console.log("dummyFn: ", dumyFn);
-  const [counter, setCounter] = useState(1);
-  const [obj2, setObj] = useState({ n: 1 });
+  const [counter, setCounter] = useState(3);
+  const [obj2, setObj] = useState({ n: 2 });
   console.log("render in parent, with obj: ", obj);
 
   return (<>

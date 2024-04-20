@@ -88,22 +88,34 @@ module.exports = {
         }]
       },
       {
-          test: /\.css$/i,
-          include: path.resolve(__dirname, 'src'),
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1 
-              }
-            },
-            'postcss-loader'
-          ]
-        }
+        test: /\.css$/i,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
+          'postcss-loader',
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
+          'postcss-loader',
+          'sass-loader'
+        ]
+      }
     ]
   }
 }

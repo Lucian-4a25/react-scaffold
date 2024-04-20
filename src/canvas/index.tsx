@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react"
-import "./index.css"
-import backgroundImage from '@assets/screenshot1.png';
+import "./index.scss"
+// @ts-ignore
+// import backgroundImage from '@assets/screenshot1.png';
 
 // Test canvas with background image
 export default ({ }: {}) => {
@@ -20,8 +21,10 @@ export default ({ }: {}) => {
 
   }, []);
 
+  // console.log("background path: ", backgroundImage)
+
   return <div className="canvas-container">
-    <div className="canvas-background" style={{ width: `${width}px`, height: `${height}px`, backgroundImage: `url(${backgroundImage})` }}></div>
+    <div className="canvas-background" style={{ width: `${width}px`, height: `${height}px`, /* backgroundImage: `url(${backgroundImage})` */ }}></div>
     <canvas ref={canvas_ref} className="cavans-item" width={width} height={500}></canvas>
   </div >
 }

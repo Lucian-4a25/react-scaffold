@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import './index.css';
-import Comp from '../comp/index';
 import Canv from '../canvas/index'
+const Comp = lazy(() => import('../comp/index'));
 
 type TestProps = {
   text: string,
@@ -19,7 +19,7 @@ export default ({ obj }: TestProps) => {
   // }, [obj]);
 
   // console.log("dummyFn: ", dumyFn);
-  const [counter, setCounter] = useState(3);
+  const [counter, setCounter] = useState(5);
   const [obj2, setObj] = useState({ n: 3 });
   console.log("render in parent, with obj: ", obj);
 

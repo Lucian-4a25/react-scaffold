@@ -14,7 +14,7 @@ export default ({ obj, f }: CompProps) => {
   //   return obj.n;
   // }, [obj]);
 
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(34);
 
   // console.log("render in sub comp");
   return <>
@@ -22,7 +22,7 @@ export default ({ obj, f }: CompProps) => {
       setCounter(counter + 1);
       // console.log('click sub comp');
       // f(e);
-    }}>{/* {obj.n} */}"click me"</div>
-    <div>{counter}</div>
+    }}>{/* {obj.n} */}click me111</div>
+    <div>{counter}"dawa</div>
   </>
 }

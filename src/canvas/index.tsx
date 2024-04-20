@@ -6,8 +6,9 @@ import "./index.scss"
 // Test canvas with background image
 export default ({ }: {}) => {
   let canvas_ref = useRef(null);
-  const width = 500;
-  const height = 500;
+  const width = 600;
+  const height = 700;
+  // const a = "123";
 
   useEffect(() => {
     if (!canvas_ref.current) {

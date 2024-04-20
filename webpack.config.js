@@ -2,7 +2,13 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
+
+const is_prod = process.env.NODE_ENV == "production";
+
+// console.log("the value of process.env.NODE_ENV is: " , process.env.NODE_ENV)
 
 const babelOpts = {
   presets: [
@@ -41,7 +47,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "public/index.html",
       filename: "index.html"
-    })
+    }),
+    ...(is_prod ? [new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+    })] : [])
   ],
   devServer: {
     static: {
@@ -56,6 +65,16 @@ module.exports = {
     },
     port: 9000
   },
+  // only for production
+  // 转换代码，如使用更简单的命名，从而减少代码体积
+  optimization: is_prod ? {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+      }),
+    ],
+  } : {},
   module: {
     rules: [
       {

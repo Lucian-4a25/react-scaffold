@@ -20,13 +20,13 @@ export default ({ obj }: TestProps) => {
 
   // console.log("dummyFn: ", dumyFn);
   const [counter, setCounter] = useState(3);
-  const [obj2, setObj] = useState({ n: 2 });
+  const [obj2, setObj] = useState({ n: 3 });
   console.log("render in parent, with obj: ", obj);
 
   return (<>
     <div onClick={(e) => {
       console.log(e);
-      // setCounter(counter * 2);
+      setCounter(counter * 2);
       obj = {
         n: obj.n * 10,
       };

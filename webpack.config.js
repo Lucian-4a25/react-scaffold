@@ -5,6 +5,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require('webpack');
+const PreloadOptimizePlugin = require('./webpack_plugin/preload-image-plugin');
 
 const is_prod = process.env.NODE_ENV == "production";
 
@@ -25,7 +26,10 @@ module.exports = {
   entry: path.resolve(__dirname, 'src', 'index'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.[contenthash].js'
+    filename: 'index.[contenthash].js',
+    assetModuleFilename: '[name].[hash][ext][query]',
+    // publicPath: 'cdn.example.com/static/',
+    clean: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -46,7 +50,34 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
-      filename: "index.html"
+      filename: "index.html",
+    }),
+    new PreloadOptimizePlugin({
+      staticLinkTags: [
+        {
+          rel: 'dns-prefetch',
+          href: 'https://cdn.example.com'
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://cdn.example.com',
+        },
+        {
+          rel: 'preload',
+          href: "https://cdn.example.com/banner.ed60f30fd9b7a524caac.png",
+          attributes: { as: "image", /* crossorigin: true, */ fetchPriority: "high", media: "(min-width: 601px)",  type: "image/png" }
+        },
+        {
+          rel: 'preload',
+          href: "https://cdn.example.com/banner-mb.09ca77717d85a2da841d.png",
+          attributes: { as: "image", /* crossorigin: true,  */fetchPriority: "high", media: "(max-width: 600px)", type: "image/png" }
+        }
+      ],
+      // 匹配要预加载的资源类型及相关属性，crossorigin 必须保持一致才会使用预加载的资源
+      preloadPatterns: [
+        { pattern: /screenshot1.*\.(png|jpg|jpeg|gif)$/i, as: 'image', attributes: { /* crossorigin: true */ type: "image/png", fetchPriority: "high", media: "(min-width: 601px)", }},
+        { pattern: /\.(woff|woff2|ttf|eot)$/i, as: 'font', attributes: { crossorigin: 'anonymous' }}
+      ],
     }),
     ...(is_prod ? [new CompressionPlugin({
       test: /\.js(\?.*)?$/i,

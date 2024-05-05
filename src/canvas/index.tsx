@@ -26,5 +26,6 @@ export default ({ }: {}) => {
   return <div className="canvas-container">
     <div className="canvas-background" style={{ width: `${width}px`, height: `${height}px`, /* backgroundImage: `url(${backgroundImage})` */ }}></div>
     <canvas ref={canvas_ref} className="cavans-item" width={width} height={500}></canvas>
+    {<div className="canvas-entity"></div>}
   </div >
 }
